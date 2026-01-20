@@ -32,7 +32,7 @@ def gerar_relatorio_final(llm, history, maintenance_mode):
 
 def main():
     # Carrega a chain, a busca web e o llm puro (para o relatório)
-    rag_chain, web_search, llm = create_chain()
+    rag_chain, llm = create_chain()
 
     print("🔧 IA DE MANUTENÇÃO INDUSTRIAL INICIADA 🔧")
     print("---------------------------------------------")
@@ -97,16 +97,6 @@ def main():
         
         # Salva no histórico
         history.append((query, answer))
-
-        # Busca Web (Opcional - somente se a resposta do RAG sugerir ou se o usuário pedir)
-        # Para simplificar, mantivemos automático, mas você pode colocar uma condição
-        print("\n🌐 Fontes Complementares (Web):")
-        try:
-            web_results = web_search.invoke(query)
-            for item in web_results:
-                print(f"- {item['content'][:150]}...") # Limita o tamanho do texto web
-        except Exception as e:
-            print("Não foi possível buscar na web no momento.")
 
         print("-" * 50)
 

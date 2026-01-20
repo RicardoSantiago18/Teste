@@ -4,7 +4,6 @@ from operator import itemgetter  # <--- Importação necessária para corrigir o
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_community.tools.tavily_search import TavilySearchResults
 from langchain_core.output_parsers import StrOutputParser
 
 from app.llm import load_llm
@@ -68,6 +67,4 @@ def create_chain():
         | StrOutputParser()
     )
 
-    web_search = TavilySearchResults(k=3)
-
-    return rag_chain, web_search, llm
+    return rag_chain, llm
